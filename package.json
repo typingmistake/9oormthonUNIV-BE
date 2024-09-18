@@ -4,8 +4,15 @@
   "description": "구름톤 유니브 백엔드 과제",
   "main": "scr/app.js",
   "scripts": {
+    "start": "node src/app.js",
     "test": "test"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.0",
+    "express-session": "^1.18.0",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0"
+  }
 }
