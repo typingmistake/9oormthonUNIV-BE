@@ -3,7 +3,6 @@ import { passport, sessionConfig } from './auth.js';
 import { errorHandlingMiddleware } from './middleWare.js';
 import { router } from './controller.js';
 
-
 // 미들웨어 설정
 const app = express();
 app.use(express.json());
