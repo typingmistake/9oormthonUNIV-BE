@@ -30,6 +30,8 @@ router.post('/login', (req, res, next) => {
     })(req, res, next);
 });
 
-
+router.get('/user', (req, res) => {
+    
+});
 
 

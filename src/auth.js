@@ -1,9 +1,8 @@
 import passport from 'passport';
-import { getUserByUserId, getUser } from './model.js';
+import { } from './model.js';
 import { Strategy as LocalStrategy } from 'passport-local';
 import session from 'express-session';
 import dotenv from 'dotenv';
-import { validatePassword } from './utils.js';
 
 dotenv.config();
 
@@ -44,7 +43,7 @@ passport.serializeUser(function (user, done) {
 
 passport.deserializeUser(async function (id, done) {
     try {
-        const user = await getUser(id);
+        const user = await fet
         done(null, user);
     } catch (err) {
         done(err);
