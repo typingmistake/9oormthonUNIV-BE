@@ -2,18 +2,28 @@
   "name": "be-study-01",
   "version": "1.0.0",
   "description": "구름톤 유니브 백엔드 과제",
-  "main": "scr/app.js",
+  "main": "src/app.js",
+  "type": "module",
   "scripts": {
     "start": "node src/app.js",
-    "test": "test"
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "dotenv": "^16.4.5",
     "express": "^4.21.0",
     "express-session": "^1.18.0",
+    "mysql2": "^3.11.3",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.25.2",
+    "@babel/preset-env": "^7.25.4",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
   }
 }

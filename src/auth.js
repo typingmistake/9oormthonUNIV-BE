@@ -1,9 +1,11 @@
 import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
+import { UserDAO } from './DAO/userDAO';
 import session from 'express-session';
 import dotenv from 'dotenv';
 
 dotenv.config();
+const userDAO = new UserDAO();
 
 export const sessionConfig = session({
     secret: process.env.SESSION_SECRET_KEY, // 세션 암호화 키
@@ -18,7 +20,7 @@ export const sessionConfig = session({
 passport.use(new LocalStrategy(
     async function (userId, password, done) {
         try {
-            const user = await getUserByUserId(userId);
+            const user = await userDAO.getUserByUserId(userId); // 사용자 조회
 
             if (!user) {
                 return done(null, false, { message: '아이디에 해당하는 사용자가 없습니다.' });
@@ -42,7 +44,7 @@ passport.serializeUser(function (user, done) {
 
 passport.deserializeUser(async function (id, done) {
     try {
-        const user = await fet
+        const user = await userDAO.getUserById(id); // 사용자 조회
         done(null, user);
     } catch (err) {
         done(err);
