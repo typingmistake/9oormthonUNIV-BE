@@ -1,0 +1,11 @@
+{
+  "name": "be-study-01",
+  "version": "1.0.0",
+  "description": "구름톤 유니브 백엔드 과제",
+  "main": "scr/app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "ISC"
+}
