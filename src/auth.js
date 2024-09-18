@@ -10,9 +10,12 @@ dotenv.config();
 export const sessionConfig = session({
     secret: process.env.SESSION_SECRET_KEY, // 세션 암호화 키
     resave: false,             // 세션이 수정되지 않으면 저장하지 않음
-    saveUninitialized: false,  // 초기화되지 않은 세션을 저장하지 않음
-    cookie: { secure: false } // http 접속 허용
-})
+    saveUninitialized: false,  
+    cookie: {
+        secure: false,
+        maxAge: 1000 * 60 * 30 // 30분 (쿠키 만료 시간)
+    } // http 접속 허용
+});
 
 passport.use(new LocalStrategy(
     async function (userId, password, done) {
