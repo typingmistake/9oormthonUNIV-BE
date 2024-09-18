@@ -1,5 +1,4 @@
 import passport from 'passport';
-import { } from './model.js';
 import { Strategy as LocalStrategy } from 'passport-local';
 import session from 'express-session';
 import dotenv from 'dotenv';

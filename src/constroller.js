@@ -1,5 +1,6 @@
 import { passport } from './auth.js';
 
+
 router.get('/login', (req, res) => {
     res.render('signIn');
 });
