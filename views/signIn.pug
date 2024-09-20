@@ -1,0 +1,18 @@
+doctype html
+html
+  head
+    title 로그인
+    link(rel="stylesheet" href="signIn/css/main.css")
+
+  body
+    .login-container
+      .login-header
+        .login-header-logo 로그인
+      .login-form
+        form
+          input(type="text" id="username" placeholder="아이디")
+          input(type="password" id="password" placeholder="비밀번호")
+          button.login-btn 로그인
+          a(href="/signup") 회원가입
+
+  script(src="signIn/js/main.js", type="module")

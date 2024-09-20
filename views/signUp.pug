@@ -1,0 +1,30 @@
+doctype html
+html
+    head
+        title 회원가입
+        link(rel="stylesheet" href="signUp/css/main.css")
+
+    body
+        .signUp-container
+            .signUp-header
+                .signup-header-logo 회원가입
+            .signUp-form
+                form(id="signUpForm" enctype="multipart/form-data")
+
+                    label(id = "id_status") 아이디 중복 확인
+                    input(type="text" id="user_id" placeholder="아이디")
+
+                    input(type="text" id="user_name" placeholder="이름")
+                    input(type="password" id="password" placeholder="비밀번호")
+
+                    label(id = "password_confirm_status") 비밀번호 일치 확인
+                    input(type="password" id="password_confirm" placeholder="비밀번호 확인")
+
+                    label(id = "profile_image_status") 프로필 이미지를 선택해주세요.
+                    input(type="file" id="profile_image" accept="image/*")
+
+                    button.signUp-btn(type="submit") 가입
+                    a(href="/login") 취소
+    
+
+    script(type="module" src="signUp/js/main.js")

@@ -1,6 +1,7 @@
 import { passport } from './auth.js';
 import { UserDTO } from '../shared/DTO/userDTO.js';
-import { userDAO } from './DAO/userDAO.js';
+import { UserModel } from '../model/userModel.js';
+import { userDAO } from '../dao/userDAO.js';
 
 // 로그인 페이지 렌더링
 router.get('/login', (req, res) => {
@@ -28,7 +29,7 @@ router.post('/login', (req, res, next) => {
             }
 
             // 로그인 성공 시, 사용자 정보를 DTO로 변환
-            const loggedInUser = new UserDTO(user.id, user.userId, user.name);
+            const loggedInUser = new UserDTO({userId: user.userId, name: user.name, email: user.email});
 
             return res.json({
                 ok: true,
@@ -40,35 +41,28 @@ router.post('/login', (req, res, next) => {
     })(req, res, next);
 });
 
-// 사용자 정보 조회
-router.get('/user', async (req, res) => {
-    if (!req.isAuthenticated()) {
-        return res.status(401).json({
-            ok: false,
-            message: '인증되지 않았습니다.'
-        });
-    }
-
+// 사용자 아이디 중복 조회
+router.get('/checkUserId', async (req, res) => {
+    const { userId } = req.query;
     try {
-        const userId = req.user.id;
-        const user = await userDAO.getUserById(userId);
-        if (!user) {
-            return res.status(404).json({
+        const user = await userDAO.getUserByUserId(userId);
+
+        if (user) {
+            return res.json({
                 ok: false,
-                message: '사용자를 찾을 수 없습니다.'
+                message: '이미 존재하는 아이디입니다.'
             });
         }
 
-        // 사용자 정보를 DTO로 변환하여 응답
-        const userData = new UserDTO(user.id, user.userId, user.name);
         return res.json({
             ok: true,
-            user: userData
+            message: '사용 가능한 아이디입니다.'
         });
     } catch (error) {
         return res.status(500).json({
             ok: false,
-            message: '서버 오류가 발생했습니다.'
+            message: '아이디 중복 조회에 실패했습니다.',
+            error: error.message
         });
     }
 });
@@ -85,6 +79,14 @@ router.post('/signUp', async (req, res) => {
         const newUser = new UserModel(userId, name, email, password);
         // 아이디 중복 확인
         const existingUser = await newUser.getUserByUserId();
+
+        if (existingUser) {
+            return res.status(409).json({
+                ok: false,
+                message: '이미 존재하는 아이디입니다.'
+            });
+        }
+
         await newUser.hashPassword();
 
         // DAO를 통해 데이터베이스에 사용자 저장
@@ -94,6 +96,7 @@ router.post('/signUp', async (req, res) => {
             ok: true,
             message: '회원가입 성공'
         });
+
     } catch (error) {
         return res.status(500).json({
             ok: false,

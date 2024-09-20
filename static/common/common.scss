@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+
+// 폰트 변수
+$font-family: 'Noto Sans KR', sans-serif;
+
+// 색상 변수
+$grayscale-50: #FEFEFE;
+$grayscale-100: #F7F7FC;
+$grayscale-200: #EFF0F6;
+$grayscale-300: #D9DBE9;
+$grayscale-400: #BEC1D5;
+$grayscale-500: #A0A3BD;
+$grayscale-600: #6E7191;
+$grayscale-700: #4E4B66;
+$grayscale-800: #2A2A44;
+$grayscale-900: #14142B;
+
+$accent-blue: #007AFF;
+$accent-red: #FF3B30;
+
+// 간격 변수
+$spacing-50: 4px;
+$spacing-100: 8px;
+$spacing-200: 16px;
+$spacing-300: 24px;
+$spacing-400: 32px;
+
+
+@mixin card-style ($padding: $spacing-200, $radius: 8px) {
+    justify-content: space-around;
+    margin-bottom: $spacing-100;
+    border-radius: $radius;
+    padding: $padding;
+    width: auto;
+    gap: $spacing-200;
+    background-color: $grayscale-100;
+    box-shadow: 0px 1px 4px rgba(110, 128, 145, 0.24);
+}
+
+@mixin modal-style {
+    color : $accent-red;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+}
+
+@mixin button-style {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: $spacing-100 $spacing-200;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    color: $grayscale-100;
+    background-color: $accent-blue;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    &:hover {
+        background-color: lighten($color: $accent-blue, $amount: 10%);
+    }
+}
+
+@mixin input-style {
+    padding: $spacing-100 $spacing-200;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    color: $grayscale-800;
+    background-color: $grayscale-100;
+    border: 1px solid $grayscale-300;
+    transition: border-color 0.3s;
+    &:focus {
+        border-color: $grayscale-900;
+    }
+}
