@@ -1,0 +1,32 @@
+@import '../../common/common.scss';
+
+
+body {
+    background-color: $grayscale-300;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .login-container{
+        @include card-style;
+        flex-direction: column;
+        .login-header {
+            font-size: 24px;
+            font-weight: 700;
+            color: $grayscale-800;
+            margin-bottom: $spacing-200;
+        }
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: $spacing-200;
+            input {
+                @include input-style;
+                width: 100%;
+            }
+        }
+        .login-button {
+            @include button-style;
+            width: 100%;
+        }
+    }
+}
